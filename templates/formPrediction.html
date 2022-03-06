@@ -1,0 +1,88 @@
+{% extends "layouts/base.html" %}
+
+{% block customCSS %}
+<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/asprobo.css')}}" />
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+  <div class="card">
+    <div class="container">
+      <div class="card-header card-header-primary">
+        <p class="card-category"></p>
+        <h4 class="card-title text-center">Estimación de trips para los siguientes 7 dias</h4>
+        <p class="card-category"></p>
+      </div>
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <p>La predicción se realiza mediante modelos matemáticos ajustados con datos de la asosiación ASPROBO-BUENOS AIRES-MORROPÓN. </p>
+        <!-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> -->
+      </div>
+    </div>
+    
+    <div class="row mt-5 justify-content-center">
+
+      <div class="col-md-6">
+
+        <div class="card">
+          <div class="card-body">
+
+            <form action="/viewPrediction" method="POST" class="align-items-center">
+
+              <div class="form-group">
+                <div class="card-header">
+                  <label class="bmd-label-floating"> <strong> Estación:</strong></label>
+                </div>
+
+                <div class="card-body">
+                  <select id="" name="cmbEstacion" class="form-control">
+                    <option value="1">Estación Chulucanas</option>
+                    <!-- <option value="2">Estación HATILLO PALMA align-items-center min-vh-100   </option>
+          <option value="3">Estación HATO AL MEDIO</option> -->
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="card-header">
+                  <label class="bmd-label-floating"> <strong>Parcela de interés:</strong></label>
+                </div>
+                <div class="card-body">
+                  <select class="form-control" id="" name="ID_parcela">
+                    <option value="29">Máximo lopez rojas</option>
+                  </select>
+                </div>
+              </div>
+
+
+              <div class="card-header">
+                <span> <strong> Fecha de la última fumigación correctiva:</strong></span>
+                <span> {{dataF1_1}}</span>
+              </div>
+
+              <div class="card-header">
+                <span> <strong> Fecha de la última fumigación preventiva:</strong></span>
+                <span>{{dataF1_2}}</span>
+              </div>
+
+              <div class="card-header">
+                <span> <strong> Fecha de la última limpieza:</strong> </span>
+                <span>{{dataL_L}}</span>
+              </div>
+              <br>
+
+              <div class="d-grid gap-2"">
+              <button type=" submit" class="btn btn-block btn-success"> Calcular</button>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+      <br>
+    </div>
+    <br>
+  </div>
+</div>
+
+{% endblock content %}
