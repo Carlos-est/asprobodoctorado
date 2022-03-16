@@ -177,7 +177,7 @@ def viewPrediction():
             estacionName="ASPROBO"
             session['estacionName']= estacionName
             print("antes de data...")
-            data, evaluacion_plagas =nuevasFuncionesChulucanas.Prediccion(fechaPredictionF1,fechaPredictionF2,fechaPredictionC,int(ID_parcela))
+            data, evaluacion_plagas, PT0 =nuevasFuncionesChulucanas.Prediccion(fechaPredictionF1,fechaPredictionF2,fechaPredictionC,int(ID_parcela))
             print("data filtrada:",data)
             print("evaluación de plagas:", evaluacion_plagas)
             data=data[-7:]
@@ -186,15 +186,15 @@ def viewPrediction():
             #print("predicciones:", predicciones)
 
         #return render_template('viewprediction.html', fechaF1 = fechaPredictionF1, fechaF2 = fechaPredictionF2, fechaC = vafechaPredictionC, fechas = fechas, predicciones= predicciones, datosCompletos = data)
-        return render_template('viewprediction.html', fechaF1 = fechaPredictionF1, fechaF2 = fechaPredictionF2, fechaC = fechaPredictionC, fechas=fechas, predicciones=predicciones, datosCompletos=data, evaluacion_plagas = evaluacion_plagas)
+        return render_template('viewprediction.html', fechaF1 = fechaPredictionF1, fechaF2 = fechaPredictionF2, fechaC = fechaPredictionC, fechas=fechas, predicciones=predicciones, datosCompletos=data, evaluacion_plagas = evaluacion_plagas, PT0=PT0)
 
-@app.errorhandler(Exception)
+""" @app.errorhandler(Exception)
 def handle_exception(e):
     if isinstance(e, HTTPException):
         return e
 
     flash('Error: Verifique los datos ingresados')
-    return render_template("formError.html", e=e), 500
+    return render_template("formError.html", e=e), 500 """
 
 
 def status_401(error):

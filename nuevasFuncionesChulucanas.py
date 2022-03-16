@@ -79,8 +79,6 @@ def Prediccion(fecha_F1, fecha_F2, fecha_C, ID_parcela):
         dbConnection.close()
     
     ult_fecha = datetime.strptime(np.array(df_Fecha)[-1][0], '%d/%m/%Y')
-    fecha_evaluacion = np.array(df_Fecha)[-1][0]
-    #print("Fecha de última evaluación:", ult_fecha)
     
     sqlEngine = create_engine("mysql+pymysql://" + "labsacco_banano" + ":" + "ciba15153232" + "@" + "labsac.com" + "/" +"labsacco_banano_iot")
     dbConnection = sqlEngine.connect()
@@ -97,10 +95,12 @@ def Prediccion(fecha_F1, fecha_F2, fecha_C, ID_parcela):
     except Exception as ex:   
         print(ex)
     finally:
-        dbConnection.close()    
-    
+        dbConnection.close()
+    fecha_evaluacion = fec_t.strftime('%d/%m/%Y')
+    print("Fecha de última evaluación:", fecha_evaluacion)
+    #print("fec_t:", fec_t, type(fec_t))
     PT0 = df_thrips['VALOR'].mean()*2  
-    #print("PT0:", PT0)
+    print("PT0:", PT0)
     fec_F1 = datetime.strptime(fecha_F1, '%d/%m/%Y')
     fec_F2 = datetime.strptime(fecha_F2, '%d/%m/%Y')
     fec_C = datetime.strptime(fecha_C, '%d/%m/%Y')
@@ -159,4 +159,4 @@ def Prediccion(fecha_F1, fecha_F2, fecha_C, ID_parcela):
     #print("fechas:",fechas , type(fechas))
     #print("predicciones:",PT_sim, type(PT_sim))
     
-    return Datos,fecha_evaluacion
+    return Datos,fecha_evaluacion, PT0
