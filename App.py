@@ -102,7 +102,7 @@ def home():
 @login_required
 def formVariables():
     data = functionsChulucanas.graficas()
-    estacion = "Ubicado en Buenos Aires-Morropón"
+    estacion = "Chulucanas"
     session['data'] = data
     session['estacion'] = estacion
 
