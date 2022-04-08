@@ -1,0 +1,82 @@
+{% extends "layouts/base.html" %}
+
+{% block customCSS %}
+<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/asprobo.css')}}" />
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="card">
+        <div class="container">
+            <div class="card-header card-header-primary">
+                <p class="card-category"></p>
+                <h4 class="card-title text-center">Descarga de datos meteorológicos - Estacion ASPROBO</h4>
+                <p class="card-category"></p>
+            </div>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <p>Los datos son promedios diarios y el intervalo de tiempo esta definido por la "cantidad de semanas". </p>
+                <!-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> -->
+            </div>
+        </div>
+
+        <div class="row mt-5 justify-content-center">
+
+            <div class="col-md-4">
+
+                <div class="card">
+                    <div class="card-body">
+
+                        <form action="/viewDescargar" method="POST" class="align-items-center">
+
+                            <div class="form-group">
+                                <div class="card-header">
+                                    <label class="bmd-label-floating"> <strong>Datos necesarios:</strong></label>
+                                </div>
+                            </div>
+                            <br>
+
+                            <div class="form-group">Año:
+                                <select id="" name="year" class="form-control">
+                                    <option value="1">2019</option>
+                                    <option value="2">2020</option>
+                                    <option value="3">2021</option>
+                                    <option value="4">2022</option>
+                                </select>
+                            </div>
+
+                            <br>
+                            <div class="form-group">
+                                {{form.CantSemana.label(class='bmd-label-floating')}}
+                                {{form.CantSemana}} {{form.hidden_tag()}}
+                                    {%for error in form.CantSemana.errors %}
+                                        <span style="color: red;">{{error}}</span>
+                                    {% endfor %}
+                            </div>
+                            <br>
+
+                            <div class="form-group">
+                                {{form.NroSemana.label(class='bmd-label-floating')}}
+                                {{form.NroSemana}} {{form.hidden_tag()}}
+                                    {%for error in form.NroSemana.errors %}
+                                        <span style="color: red;">{{error}}</span>
+                                    {% endfor %}
+                            </div>
+                            <br>
+
+                            <div class="d-grid gap-2">
+                                <button type=" submit" class="btn btn-block btn-success"> Descargar</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <br>
+        </div>
+        <br>
+    </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,48 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Page User {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-12">
+            <br>
+            <br>
+            <br>
+            <div class="card">
+                <div class="card-header card-header-primary text-center">
+                    <br>
+                    <h4 class="card-title">Aviso importante</h4>
+                    <br>
+                </div>
+                <br>
+                <div class="card-body">
+                    <div class="alert alert-success alert-danger fade show text-center" role="alert">
+                        <p>Ha ocurrido un problema, los datos que solicita no estan an la base de datos.</p>
+                        <p>Se recomienda introducir nuevos valores.</p>
+                        <!-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> -->
+                    </div>
+
+                </div>
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

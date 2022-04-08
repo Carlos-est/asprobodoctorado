@@ -11,6 +11,7 @@ import functionsChulucanas
 from forms import FormIndicadoresCultivo
 from forms import FormBiomasa
 from forms import FormPrediction
+from forms import FormDescargar
 import numpy as np
 """ loginv  """
 from flask import Flask, render_template, request, redirect, url_for, flash
@@ -114,6 +115,12 @@ def formVariables():
     #return render_template('viewBiomasa.html',valor1 = valor1, valor2 = valor2, valor3=valor3,  estacionName = estacionName)
     return render_template('formVariables.html', data = data, fechas = fechas ,tempPromedio =tempPromedio,temp_max = temp_max, humedad =humedad,temp_min=temp_min ,estacionName = estacion)
 
+@app.route('/formDescargar')
+@login_required
+def formDescargar():
+    formDescargar = FormDescargar()
+    return render_template('formDescargar.html', form = formDescargar)
+
 
 @app.route('/formprediction')
 @login_required
@@ -196,6 +203,33 @@ def handle_exception(e):
     flash('Error: Verifique los datos ingresados')
     return render_template("formError.html", e=e), 500 """
 
+@app.route('/viewDescargar', methods =['POST'])
+@login_required
+def viewDescargar():
+    if request.method == 'POST':
+        print("En viewDescargar-POST")
+        year = request.form['year']
+        CantSemana=request.form['CantSemana']
+        NroSemana=request.form['NroSemana']
+        session['year'] = year
+        session['NroSemana'] = NroSemana
+        if year=="1":
+            año=2019
+        elif year=="2":
+            año=2020
+        elif year=="3":
+            año=2021
+        elif year=="4":
+            año=2022
+        result=functionsChulucanas.DescargarDatos(int(año),int(NroSemana),int(CantSemana))
+        print("Resultado:",result)
+        print(año,NroSemana,CantSemana)
+        if result=="tablas insertadas":
+            print("descargando excel")
+            return redirect('https://labsac.com/webgestion/admin/catalogo/evaluacionplagas/formDescargaDatos.htm?anio='+str(año)+'&nroSemana='+str(NroSemana)+'&cantSemana='+str(CantSemana)+'')
+        else:
+            print("Datos insertados no encontrados")
+            return render_template('viewDescargar.html')
 
 def status_401(error):
     return redirect(url_for('login'))
