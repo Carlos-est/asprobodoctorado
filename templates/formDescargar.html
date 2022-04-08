@@ -45,15 +45,6 @@
                                     <option value="4">2022</option>
                                 </select>
                             </div>
-
-                            <br>
-                            <div class="form-group">
-                                {{form.CantSemana.label(class='bmd-label-floating')}}
-                                {{form.CantSemana}} {{form.hidden_tag()}}
-                                    {%for error in form.CantSemana.errors %}
-                                        <span style="color: red;">{{error}}</span>
-                                    {% endfor %}
-                            </div>
                             <br>
 
                             <div class="form-group">
@@ -64,7 +55,14 @@
                                     {% endfor %}
                             </div>
                             <br>
-
+                            <div class="form-group">
+                                {{form.CantSemana.label(class='bmd-label-floating')}}
+                                {{form.CantSemana}} {{form.hidden_tag()}}
+                                    {%for error in form.CantSemana.errors %}
+                                        <span style="color: red;">{{error}}</span>
+                                    {% endfor %}
+                            </div>
+                            <br>
                             <div class="d-grid gap-2">
                                 <button type=" submit" class="btn btn-block btn-success"> Descargar</button>
                             </div>

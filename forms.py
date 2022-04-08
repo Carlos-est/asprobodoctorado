@@ -27,5 +27,5 @@ class FormPrediction(FlaskForm):
 class FormDescargar(FlaskForm):
     year = h5fields.IntegerField("Año:", widget=h5widgets.NumberInput(min=2019, max=2022), validators=(DataRequired(),))
     CantSemana = h5fields.IntegerField("Cantidad de semanas:", widget=h5widgets.NumberInput(min=1, max=52), validators=(DataRequired(),))
-    NroSemana = h5fields.IntegerField("A partir de la semana (1-52):", widget=h5widgets.NumberInput(min=1, max=52), validators=(DataRequired(),))
+    NroSemana = h5fields.IntegerField("Semana del año (1-52):", widget=h5widgets.NumberInput(min=1, max=52), validators=(DataRequired(),))
     
